@@ -3,8 +3,10 @@ import RevenueChart from '@/app/ui/dashboard/revenue-chart';
 import LatestInvoices from '@/app/ui/dashboard/latest-invoices';
 import { lusitana } from '@/app/ui/fonts';
 import { fetchCardData, fetchLatestInvoices, fetchRevenue } from '@/app/lib/data';
+import { cookies } from 'next/headers';
 
 export default async function Page() {
+  cookies()
   const revenue = await fetchRevenue();
   const latestInvoices = await fetchLatestInvoices()
   const {numberOfCustomers,numberOfInvoices,totalPaidInvoices, totalPendingInvoices} = await fetchCardData()
