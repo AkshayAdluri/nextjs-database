@@ -29,9 +29,10 @@ export async function createInvoice(formData: FormData) {
     const date = new Date().toISOString().split('T')[0];
 
     // what will happen if just returned
-    return {
-        message: 'Database Error: Failed to Create Invoice.',
-    };
+    // return {
+    //     message: 'Database Error: Failed to Create Invoice.',
+    // };
+    // Noting happened it just revalidated
 
     await sql`
     INSERT INTO invoices (customer_id, amount, status, date)
@@ -62,6 +63,8 @@ export async function updateInvoice(id: string, formData: FormData) {
 }
 
 export async function deleteInvoice(id: string) {
+    throw new Error('Failed to Delete Invoice');
+    
     await sql`DELETE FROM invoices WHERE id = ${id}`;
     revalidatePath('/dashboard/invoices');
 }
