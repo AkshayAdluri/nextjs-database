@@ -83,7 +83,7 @@ export async function updateInvoice(id: string, formData: FormData) {
 
 export async function deleteInvoice(id: string) {
     try {
-        new Error("Error occurred")
+        Promise.reject("You are rejected");
         await sql`DELETE FROM invoices WHERE id = ${id}`;
         revalidatePath('/dashboard/invoices');
         return { message: 'Deleted Invoice.' };
